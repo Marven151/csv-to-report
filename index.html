@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Light Coffee Roasters sales report, August to October 2026</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f4f1; --surface: #fcfcfb; --step: #ecebe6;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #6f6d68;
+  --grid: #e1e0d9; --base: #b9b7ae; --warn-bg: #fff4d6;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111110; --surface: #1a1a19; --step: #242422;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9b998f;
+    --grid: #2c2c2a; --base: #4a4945; --warn-bg: #3a3215;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111110; --surface: #1a1a19; --step: #242422;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9b998f;
+  --grid: #2c2c2a; --base: #4a4945; --warn-bg: #3a3215;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%; }
+main { max-width: 1040px; margin: 0 auto; padding: 40px 20px 64px; }
+h1 { font-size: clamp(28px, 4.4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; margin: 0; }
+h2 { font-size: 22px; line-height: 1.25; margin: 0 0 4px; }
+.sub { color: var(--ink-2); margin: 8px 0 0; font-size: 17px; }
+.note { display: inline-block; margin: 14px 0 0; padding: 6px 12px; border-radius: 6px; background: var(--warn-bg); font-size: 15px; }
+.tiles { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 12px; margin: 32px 0; }
+.tile { background: var(--surface); border-radius: 12px; padding: 18px 20px; }
+.tile-label { color: var(--ink-2); font-size: 15px; margin: 0; }
+.tile-value { font-size: 30px; font-weight: 650; letter-spacing: -0.01em; margin: 4px 0 0; font-variant-numeric: tabular-nums; }
+.tile-hero .tile-value { font-size: 48px; line-height: 1.1; }
+.tile-note { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
+section.card { background: var(--surface); border-radius: 12px; padding: 24px; margin-top: 16px; }
+.card-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 16px; }
+.card-head p { margin: 0; color: var(--ink-2); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-2 section.card { margin-top: 16px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; font-size: 15px; color: var(--ink-2); }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.chart-columns { display: flex; }
+.chart-columns svg { display: block; overflow: visible; }
+.chart-columns .axis { flex: none; }
+.chart-columns .plot { flex: 1 1 auto; min-width: 0; }
+.axis text { fill: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.plot .grid { stroke: var(--grid); stroke-width: 1; }
+.plot .baseline { stroke: var(--base); stroke-width: 1; }
+.plot .value { fill: var(--ink); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.plot .label { fill: var(--ink-2); font-size: 14px; }
+.mark { outline: none; cursor: default; }
+.mark:hover rect, .mark:focus-visible rect { opacity: 0.8; }
+.mark:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.bars { display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: minmax(96px, 34%) 1fr 72px; align-items: center; gap: 12px; }
+.bar-label { font-size: 15px; overflow-wrap: anywhere; line-height: 1.25; }
+.bar-track { width: 100%; display: block; }
+.bar-value { text-align: right; font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 600; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 15px; }
+th, td { text-align: left; padding: 8px 10px; }
+th { color: var(--ink-2); font-weight: 600; border-bottom: 1px solid var(--grid); }
+td { border-bottom: 1px solid var(--grid); }
+td.num, th.num { text-align: right; }
+tfoot td { font-weight: 650; border-bottom: 0; }
+.table-wrap { overflow-x: auto; margin-top: 20px; }
+details { margin-top: 16px; }
+summary { cursor: pointer; color: var(--ink-2); }
+.notes { color: var(--ink-2); font-size: 15px; max-width: 70ch; }
+.notes li + li { margin-top: 6px; }
+.flag { background: var(--warn-bg); padding: 2px 6px; border-radius: 4px; }
+footer { color: var(--muted); font-size: 14px; margin-top: 32px; }
+footer a { color: inherit; }
+#tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--surface); font-size: 14px;
+  padding: 6px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; transition: opacity .1s; z-index: 5; }
+@media (max-width: 760px) {
+  main { padding: 28px 16px 48px; }
+  .tiles { grid-template-columns: 1fr 1fr; }
+  .tile-hero { grid-column: 1 / -1; }
+  .grid-2 { grid-template-columns: 1fr; }
+  section.card { padding: 18px 16px; }
+  .bar-row { grid-template-columns: minmax(84px, 38%) 1fr 64px; gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { #tip { transition: none; } }
+@media print { #tip { display: none; } body { background: #fff; } section.card, .tile { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Harbor Light Coffee Roasters sales report</h1>
+  <p class="sub">August to October 2026, from 4 exports (QuickBooks, Shopify, Square)</p>
+  <p class="note">Sample report. Harbor Light Coffee Roasters and all its data are fictional.</p>
+</header>
+
+<div class="tiles">
+  <div class="tile tile-hero"><p class="tile-label">Net sales</p><p class="tile-value">$33,370</p><p class="tile-note">+7% from Aug 2026 to Oct 2026</p></div>
+  <div class="tile"><p class="tile-label">Orders</p><p class="tile-value">1,365</p></div>
+  <div class="tile"><p class="tile-label">Average order</p><p class="tile-value">$24.66</p></div>
+  <div class="tile"><p class="tile-label">Refunds</p><p class="tile-value">$294</p><p class="tile-note">10 refunds</p></div>
+</div>
+
+<section class="card" aria-labelledby="t-month">
+  <div class="card-head">
+    <div><h2 id="t-month">Net sales by month</h2><p>Best month: October 2026, $11,658</p></div>
+    <ul class="legend" aria-label="Sales channels"><li><i style="background:var(--series-1)"></i>In-store</li><li><i style="background:var(--series-2)"></i>Online</li><li><i style="background:var(--series-3)"></i>Wholesale</li></ul>
+  </div>
+  <div class="chart-columns"><svg class="axis" width="52" height="260" aria-hidden="true"><text x="44" y="228.0" text-anchor="end" dominant-baseline="middle">$0</text><text x="44" y="161.3" text-anchor="end" dominant-baseline="middle">$5K</text><text x="44" y="94.7" text-anchor="end" dominant-baseline="middle">$10K</text><text x="44" y="28.0" text-anchor="end" dominant-baseline="middle">$15K</text></svg><svg class="plot" width="100%" height="260" role="img" aria-labelledby="t-month"><line x1="0" x2="100%" y1="228.0" y2="228.0" class="baseline"/><line x1="0" x2="100%" y1="161.3" y2="161.3" class="grid"/><line x1="0" x2="100%" y1="94.7" y2="94.7" class="grid"/><line x1="0" x2="100%" y1="28.0" y2="28.0" class="grid"/><g class="mark" tabindex="0" data-tip="August 2026, In-store: $3,510.65"><rect x="16.667%" width="24" transform="translate(-12 0)" fill="var(--series-1)" y="183.2" height="44.8"/></g><g class="mark" tabindex="0" data-tip="August 2026, Online: $2,379.35"><rect x="16.667%" width="24" transform="translate(-12 0)" fill="var(--series-2)" y="151.5" height="29.7"/></g><g class="mark" tabindex="0" data-tip="August 2026, Wholesale: $4,958.00"><rect x="16.667%" width="24" transform="translate(-12 0)" fill="var(--series-3)" y="83.4" height="66.1" rx="4"/><rect x="16.667%" width="24" transform="translate(-12 0)" fill="var(--series-3)" y="145.5" height="4.0"/></g><text class="value" x="16.667%" y="75.4" text-anchor="middle">$10,848</text><text class="label" x="16.667%" y="250" text-anchor="middle">Aug 2026</text><g class="mark" tabindex="0" data-tip="September 2026, In-store: $3,589.75"><rect x="50.0%" width="24" transform="translate(-12 0)" fill="var(--series-1)" y="182.1" height="45.9"/></g><g class="mark" tabindex="0" data-tip="September 2026, Online: $2,567.60"><rect x="50.0%" width="24" transform="translate(-12 0)" fill="var(--series-2)" y="147.9" height="32.2"/></g><g class="mark" tabindex="0" data-tip="September 2026, Wholesale: $4,707.00"><rect x="50.0%" width="24" transform="translate(-12 0)" fill="var(--series-3)" y="83.1" height="62.8" rx="4"/><rect x="50.0%" width="24" transform="translate(-12 0)" fill="var(--series-3)" y="141.9" height="4.0"/></g><text class="value" x="50.0%" y="75.1" text-anchor="middle">$10,864</text><text class="label" x="50.0%" y="250" text-anchor="middle">Sep 2026</text><g class="mark" tabindex="0" data-tip="October 2026, In-store: $3,462.05"><rect x="83.333%" width="24" transform="translate(-12 0)" fill="var(--series-1)" y="183.8" height="44.2"/></g><g class="mark" tabindex="0" data-tip="October 2026, Online: $2,259.60"><rect x="83.333%" width="24" transform="translate(-12 0)" fill="var(--series-2)" y="153.7" height="28.1"/></g><g class="mark" tabindex="0" data-tip="October 2026, Wholesale: $5,936.00"><rect x="83.333%" width="24" transform="translate(-12 0)" fill="var(--series-3)" y="72.6" height="79.1" rx="4"/><rect x="83.333%" width="24" transform="translate(-12 0)" fill="var(--series-3)" y="147.7" height="4.0"/></g><text class="value" x="83.333%" y="64.6" text-anchor="middle">$11,658</text><text class="label" x="83.333%" y="250" text-anchor="middle">Oct 2026</text></svg></div>
+  <div class="table-wrap">
+    <table>
+      <caption class="sr" style="position:absolute;left:-9999px">Net sales by month and channel</caption>
+      <thead><tr><th>Month</th><th class=num>In-store</th><th class=num>Online</th><th class=num>Wholesale</th><th class=num>Refunds</th><th class=num>Net sales</th><th class=num>Orders</th><th class=num>Average order</th></tr></thead>
+      <tbody><tr><td>August 2026</td><td class=num>$3,510.65</td><td class=num>$2,379.35</td><td class=num>$4,958.00</td><td class=num>$122.25</td><td class=num>$10,848.00</td><td class=num>456</td><td class=num>$24.06</td></tr><tr><td>September 2026</td><td class=num>$3,589.75</td><td class=num>$2,567.60</td><td class=num>$4,707.00</td><td class=num>$75.95</td><td class=num>$10,864.35</td><td class=num>442</td><td class=num>$24.75</td></tr><tr><td>October 2026</td><td class=num>$3,462.05</td><td class=num>$2,259.60</td><td class=num>$5,936.00</td><td class=num>$95.75</td><td class=num>$11,657.65</td><td class=num>467</td><td class=num>$25.17</td></tr></tbody>
+      <tfoot><tr><td>Total</td><td class=num>$10,562.45</td><td class=num>$7,206.55</td><td class=num>$15,601.00</td><td class=num>$293.95</td><td class=num>$33,370.00</td><td class=num>1,365</td><td class=num>$24.66</td></tr></tfoot>
+    </table>
+  </div>
+</section>
+
+<div class="grid-2">
+  <section class="card" aria-labelledby="t-cat">
+    <div class="card-head"><div><h2 id="t-cat">Sales by category</h2><p>Before refunds</p></div></div>
+    <div class="bars" role="img" aria-labelledby="t-cat"><div class="bar-row mark" tabindex="0" data-tip="Wholesale: $15,514.00"><span class="bar-label">Wholesale</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="100.00%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$15,514</span></div><div class="bar-row mark" tabindex="0" data-tip="Retail Beans: $7,034.35"><span class="bar-label">Retail Beans</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="45.34%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$7,034</span></div><div class="bar-row mark" tabindex="0" data-tip="Coffee: $5,674.65"><span class="bar-label">Coffee</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="36.58%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$5,675</span></div><div class="bar-row mark" tabindex="0" data-tip="Pastry: $2,525.75"><span class="bar-label">Pastry</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="16.28%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$2,526</span></div><div class="bar-row mark" tabindex="0" data-tip="Subscriptions: $1,520.00"><span class="bar-label">Subscriptions</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="9.80%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$1,520</span></div><div class="bar-row mark" tabindex="0" data-tip="Merch: $761.60"><span class="bar-label">Merch</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="4.91%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$762</span></div><div class="bar-row mark" tabindex="0" data-tip="Uncategorized: $408.60"><span class="bar-label">Uncategorized</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="2.63%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$409</span></div><div class="bar-row mark" tabindex="0" data-tip="Equipment: $225.00"><span class="bar-label">Equipment</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="1.45%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="1.45%" fill="var(--series-1)"/></svg><span class="bar-value">$225</span></div></div>
+    <details><summary>All categories as a table</summary>
+      <div class="table-wrap"><table><thead><tr><th>Category</th><th class=num>Sales</th><th class=num>Share</th></tr></thead><tbody><tr><td>Wholesale</td><td class=num>$15,514.00</td><td class=num>46.1%</td></tr><tr><td>Retail Beans</td><td class=num>$7,034.35</td><td class=num>20.9%</td></tr><tr><td>Coffee</td><td class=num>$5,674.65</td><td class=num>16.9%</td></tr><tr><td>Pastry</td><td class=num>$2,525.75</td><td class=num>7.5%</td></tr><tr><td>Subscriptions</td><td class=num>$1,520.00</td><td class=num>4.5%</td></tr><tr><td>Merch</td><td class=num>$761.60</td><td class=num>2.3%</td></tr><tr><td>Uncategorized</td><td class=num>$408.60</td><td class=num>1.2%</td></tr><tr><td>Equipment</td><td class=num>$225.00</td><td class=num>0.7%</td></tr></tbody></table></div>
+    </details>
+  </section>
+  <section class="card" aria-labelledby="t-cust">
+    <div class="card-head"><div><h2 id="t-cust">Top customers</h2><p>Named customers only; walk-in sales have no name</p></div></div>
+    <div class="bars" role="img" aria-labelledby="t-cust"><div class="bar-row mark" tabindex="0" data-tip="Saltbox Bakery: $3,622.00"><span class="bar-label">Saltbox Bakery</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="100.00%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$3,622</span></div><div class="bar-row mark" tabindex="0" data-tip="North Cove Inn: $2,569.00"><span class="bar-label">North Cove Inn</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="70.93%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$2,569</span></div><div class="bar-row mark" tabindex="0" data-tip="Anchor &amp; Oak Kitchen: $2,554.00"><span class="bar-label">Anchor &amp; Oak Kitchen</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="70.51%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$2,554</span></div><div class="bar-row mark" tabindex="0" data-tip="Tidewater Market: $2,496.00"><span class="bar-label">Tidewater Market</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="68.91%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$2,496</span></div><div class="bar-row mark" tabindex="0" data-tip="Bayside Bistro: $2,458.00"><span class="bar-label">Bayside Bistro</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="67.86%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$2,458</span></div><div class="bar-row mark" tabindex="0" data-tip="Pier 9 Diner: $1,902.00"><span class="bar-label">Pier 9 Diner</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="52.51%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$1,902</span></div><div class="bar-row mark" tabindex="0" data-tip="Maria Santos: $994.90"><span class="bar-label">Maria Santos</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="27.47%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$995</span></div><div class="bar-row mark" tabindex="0" data-tip="Ana Costa: $688.40"><span class="bar-label">Ana Costa</span><svg class="bar-track" height="18" aria-hidden="true"><rect x="0" y="0" height="18" width="19.01%" rx="4" fill="var(--series-1)"/><rect x="0" y="0" height="18" width="4" fill="var(--series-1)"/></svg><span class="bar-value">$688</span></div></div>
+    <details><summary>Top 25 customers as a table</summary>
+      <div class="table-wrap"><table><thead><tr><th>Customer</th><th>Channel</th><th class=num>Orders</th><th class=num>Net sales</th></tr></thead><tbody><tr><td>Saltbox Bakery</td><td>Wholesale</td><td class=num>13</td><td class=num>$3,622.00</td></tr><tr><td>North Cove Inn</td><td>Wholesale</td><td class=num>9</td><td class=num>$2,569.00</td></tr><tr><td>Anchor &amp; Oak Kitchen</td><td>Wholesale</td><td class=num>10</td><td class=num>$2,554.00</td></tr><tr><td>Tidewater Market</td><td>Wholesale</td><td class=num>8</td><td class=num>$2,496.00</td></tr><tr><td>Bayside Bistro</td><td>Wholesale</td><td class=num>11</td><td class=num>$2,458.00</td></tr><tr><td>Pier 9 Diner</td><td>Wholesale</td><td class=num>7</td><td class=num>$1,902.00</td></tr><tr><td>Maria Santos</td><td>In-store, Online</td><td class=num>30</td><td class=num>$994.90</td></tr><tr><td>Ana Costa</td><td>Online</td><td class=num>11</td><td class=num>$688.40</td></tr><tr><td>Tyler Grant</td><td>Online</td><td class=num>10</td><td class=num>$611.70</td></tr><tr><td>Fatima Noor</td><td>Online</td><td class=num>13</td><td class=num>$555.30</td></tr><tr><td>Ravi Shah</td><td>Online</td><td class=num>9</td><td class=num>$508.00</td></tr><tr><td>Mei Chen</td><td>Online</td><td class=num>8</td><td class=num>$467.10</td></tr><tr><td>Ingrid Berg</td><td>Online</td><td class=num>10</td><td class=num>$466.00</td></tr><tr><td>Julia Weber</td><td>Online</td><td class=num>8</td><td class=num>$422.60</td></tr><tr><td>Zoe Adams</td><td>Online</td><td class=num>8</td><td class=num>$401.10</td></tr><tr><td>Luis Ortega</td><td>Online</td><td class=num>5</td><td class=num>$398.00</td></tr><tr><td>Marcus Hill</td><td>Online</td><td class=num>10</td><td class=num>$391.50</td></tr><tr><td>Dana Brooks</td><td>Online</td><td class=num>7</td><td class=num>$341.45</td></tr><tr><td>Kevin Roy</td><td>Online</td><td class=num>6</td><td class=num>$265.80</td></tr><tr><td>Chris Doyle</td><td>Online</td><td class=num>8</td><td class=num>$264.40</td></tr><tr><td>Jonah Miller</td><td>In-store</td><td class=num>22</td><td class=num>$261.05</td></tr><tr><td>Sophie Martin</td><td>Online</td><td class=num>5</td><td class=num>$237.50</td></tr><tr><td>Priya Raman</td><td>In-store</td><td class=num>20</td><td class=num>$183.05</td></tr><tr><td>Alicia Gomez</td><td>Online</td><td class=num>4</td><td class=num>$171.30</td></tr><tr><td>Dev Patel</td><td>In-store</td><td class=num>13</td><td class=num>$142.85</td></tr></tbody></table></div>
+    </details>
+  </section>
+</div>
+
+<section class="card" aria-labelledby="t-data">
+  <div class="card-head"><div><h2 id="t-data">How the numbers were made</h2></div></div>
+  <ul class="notes"><li>Sales are net of discounts and before sales tax, tips and shipping. Refunds are subtracted in the month they appear in the export.</li><li>Orders counts each receipt, online order or invoice once, however many items it has.</li><li>Duplicates are lines that appear twice in the same system's exports (for example two downloads with overlapping dates); 337 were removed.</li><li>7 rows were left out because they were not sales: cancelled or unpaid orders, total rows, or rows without a date or amount. Each one is listed by file below.</li><li>Shopify's order export shows one refunded total per order and no refund date, so Shopify refunds are counted on the order date and capped at the order's product value.</li><li><span class="flag">$408.60 of sales has no category</span>. Add rules to a categories file to sort these lines.</li></ul>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>File</th><th>Format</th><th class=num>Rows</th><th class=num>Lines used</th><th class=num>Duplicates</th><th>Left out</th></tr></thead>
+      <tbody><tr><td>quickbooks_sales_by_customer.csv</td><td>QuickBooks</td><td class=num>128</td><td class=num>128</td><td class=num>0</td><td>none</td></tr><tr><td>shopify_orders_export.csv</td><td>Shopify</td><td class=num>261</td><td class=num>256</td><td class=num>2</td><td>cancelled order (4); not paid (pending) (2)</td></tr><tr><td>square_items_2026-08-01_2026-09-30.csv</td><td>Square</td><td class=num>1284</td><td class=num>1283</td><td class=num>0</td><td>total row (1)</td></tr><tr><td>square_items_2026-09-15_2026-10-31.csv</td><td>Square</td><td class=num>968</td><td class=num>633</td><td class=num>335</td><td>none</td></tr></tbody>
+    </table>
+  </div>
+  <details><summary>Every row that was left out</summary>
+    <div class="table-wrap"><table><thead><tr><th>File</th><th class=num>Row</th><th>Reason</th></tr></thead><tbody><tr><td>shopify_orders_export.csv</td><td class=num>100</td><td>not paid (pending)</td></tr><tr><td>shopify_orders_export.csv</td><td class=num>101</td><td>not paid (pending)</td></tr><tr><td>shopify_orders_export.csv</td><td class=num>123</td><td>cancelled order</td></tr><tr><td>shopify_orders_export.csv</td><td class=num>124</td><td>cancelled order</td></tr><tr><td>shopify_orders_export.csv</td><td class=num>218</td><td>cancelled order</td></tr><tr><td>shopify_orders_export.csv</td><td class=num>219</td><td>cancelled order</td></tr><tr><td>square_items_2026-08-01_2026-09-30.csv</td><td class=num>1287</td><td>total row</td></tr></tbody></table></div>
+  </details>
+</section>
+
+<footer>
+  <p>Generated October 30, 2026 with <a href="https://github.com/Marven151/csv-to-report">csv-to-report</a>. 2,300 sale lines.</p>
+</footer>
+</main>
+<div id="tip" role="presentation"></div>
+<script>
+(function () {
+  var tip = document.getElementById('tip');
+  function show(el, x, y) {
+    tip.textContent = el.getAttribute('data-tip');
+    tip.style.opacity = 1;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    tip.style.left = Math.max(8, Math.min(x - w / 2, window.innerWidth - w - 8)) + 'px';
+    tip.style.top = Math.max(8, y - h - 12) + 'px';
+  }
+  function hide() { tip.style.opacity = 0; }
+  document.querySelectorAll('.mark').forEach(function (el) {
+    el.addEventListener('mousemove', function (e) { show(el, e.clientX, e.clientY); });
+    el.addEventListener('mouseleave', hide);
+    el.addEventListener('focus', function () { var r = el.getBoundingClientRect(); show(el, r.left + r.width / 2, r.top); });
+    el.addEventListener('blur', hide);
+  });
+})();
+</script>
+</body>
+</html>
